@@ -15,8 +15,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.dromescu.popularmovies.data.MoviesContract;
-import com.squareup.picasso.Picasso;
 
 /**
  * Created by dromescu on 15.07.15.
@@ -26,6 +26,7 @@ public class DetailsFragment extends Fragment implements LoaderManager.LoaderCal
     private static final int DETAILS_LOADER = 0;
 
     private long mMovieId;
+    // final private Context mContext;
 
     private static final String[] DETAILS_COLUMNS = {
             MoviesContract.MovieEntry.TABLE_NAME + "." + MoviesContract.MovieEntry._ID,
@@ -110,8 +111,13 @@ public class DetailsFragment extends Fragment implements LoaderManager.LoaderCal
             return;
         }
 
-        String imgUrl = "http://image.tmdb.org/t/p/w185"  + data.getString(data.getColumnIndex(MoviesContract.MovieEntry.COLUMN_POSTER_PATH));
-        Picasso.with(getActivity()).load(imgUrl).into(this.poster);
+        String imgUrl = Utility.getArtUrlForMovie(getActivity()) + data.getString(data.getColumnIndex(MoviesContract.MovieEntry.COLUMN_POSTER_PATH));
+
+        Glide.with(getActivity())
+                .load(imgUrl)
+                .error(Utility.getDefaultImageForMovie(getActivity()))
+                .crossFade()
+                .into(this.poster);
 
         String title = data.getString(data.getColumnIndex(MoviesContract.MovieEntry.COLUMN_TITLE));
         this.title.setText(title);

@@ -2,6 +2,8 @@ package com.dromescu.popularmovies;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.preference.PreferenceManager;
 
 /**
@@ -12,4 +14,29 @@ public class Utility {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         return prefs.getString(context.getString(R.string.pref_list_key), context.getString(R.string.pref_list_popular));
     }
+
+    /**
+     * Helper method to provide the art urls according to the themoviedb call.
+     *
+     * @param context Context to use for retrieving the URL format
+     * @param
+     * @return url for the corresponding movie artwork. default artwork if no relation is found.
+     */
+    public static String getArtUrlForMovie(Context context) {
+
+         String imageUrl = context.getString(R.string.pref_url_movies_picture);
+
+        return imageUrl;
+    }
+
+    public static Drawable getDefaultImageForMovie(Context context) {
+
+        Uri path = Uri.parse("android.resource://com.dromescu.popularmovies/" + R.mipmap.ic_launcher);
+        String pathName = path.toString();
+        Drawable defaultMovieImage = Drawable.createFromPath(pathName);
+
+        return defaultMovieImage;
+    }
+
+
 }

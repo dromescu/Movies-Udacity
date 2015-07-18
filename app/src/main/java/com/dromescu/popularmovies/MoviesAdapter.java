@@ -9,15 +9,19 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.squareup.picasso.Picasso;
+import com.bumptech.glide.Glide;
 
 /**
  * Created by dromescu on 15.07.15.
  */
 public class MoviesAdapter extends CursorAdapter {
 
+    final private Context mContext;
+
     public MoviesAdapter(Context context, Cursor c, int flags) {
         super(context, c, flags);
+
+        mContext = context;
     }
 
     @Override
@@ -35,8 +39,15 @@ public class MoviesAdapter extends CursorAdapter {
         final String movieTitle = cursor.getString(MoviesFragment.COL_TITLE);
         holder.title.setText(movieTitle);
 
-        final String imageUrl = "http://image.tmdb.org/t/p/w185" + cursor.getString(MoviesFragment.COL_IMAGE_PATH);
-        Picasso.with(context).load(imageUrl).into(holder.image);
+        String imageUrl = Utility.getArtUrlForMovie(mContext) + cursor.getString(MoviesFragment.COL_IMAGE_PATH);
+
+        Glide.with(mContext)
+                .load(imageUrl)
+                .error(Utility.getDefaultImageForMovie(mContext))
+                .crossFade()
+                .into(holder.image);
+
+
     }
 
     public static class PosterItemViewHolder {
