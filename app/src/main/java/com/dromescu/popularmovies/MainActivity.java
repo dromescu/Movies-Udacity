@@ -2,15 +2,21 @@ package com.dromescu.popularmovies;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.ActivityOptionsCompat;
+import android.support.v4.util.Pair;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.dromescu.popularmovies.sync.PopularMoviesSyncAdapter;
 
 
 public class MainActivity extends AppCompatActivity implements MoviesFragment.MovieSelectedCallback {
 
+    private final String LOG_TAG = MainActivity.class.getSimpleName();
+    private static final String DETAILFRAGMENT_TAG = "DFTAG";
     private boolean mTwoPane;
 
     @Override
@@ -22,7 +28,7 @@ public class MainActivity extends AppCompatActivity implements MoviesFragment.Mo
             this.mTwoPane = true;
             if (savedInstanceState == null) {
                 getSupportFragmentManager().beginTransaction()
-                        .add(R.id.movie_details_container, new DetailsFragment())
+                        .replace(R.id.movie_details_container, new DetailsFragment(), DETAILFRAGMENT_TAG)
                         .commit();
             }
         } else {
@@ -56,14 +62,25 @@ public class MainActivity extends AppCompatActivity implements MoviesFragment.Mo
     }
 
     @Override
-    public void onItemSelected(long id) {
+    public void onItemSelected(long id, MoviesAdapter.MoviesAdapterViewHolder vh) {
         if (mTwoPane) {
+            Bundle args = new Bundle();
+            args.putLong(DetailsFragment.KEY_MOVIE_ID, id);
+
+            DetailsFragment fragment = new DetailsFragment();
+            fragment.setArguments(args);
             getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.movie_details_container, DetailsFragment.newInstance(id))
+                    .replace(R.id.movie_details_container, fragment, DETAILFRAGMENT_TAG)
                     .commit();
         } else {
-            Intent intent = new Intent(this, DetailsActivity.class).putExtra(DetailsActivity.KEY_MOVIE_ID, id);
-            startActivity(intent);
+            Intent intent = new Intent(this, DetailsActivity.class).
+                    putExtra(DetailsFragment.KEY_MOVIE_ID, id);
+
+            ActivityOptionsCompat activityOptions =
+                    ActivityOptionsCompat.makeSceneTransitionAnimation(this,
+                            new Pair<View, String>(vh.image, getString(R.string.detail_icon_transition_name)));
+            ActivityCompat.startActivity(this, intent, activityOptions.toBundle());
+
         }
     }
 }

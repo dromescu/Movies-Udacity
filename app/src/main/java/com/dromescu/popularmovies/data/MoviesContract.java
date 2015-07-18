@@ -18,6 +18,7 @@ public class MoviesContract {
 
     /* Class that defines the table contents of the movie table */
     public static final class MovieEntry implements BaseColumns {
+
         public static final Uri CONTENT_URI = BASE_CONTENT_URI.buildUpon().appendPath(PATH_MOVIES).build();
         public static final String CONTENT_TYPE =
                 "vnd.android.cursor.dir/" + CONTENT_AUTHORITY + "/" + PATH_MOVIES;

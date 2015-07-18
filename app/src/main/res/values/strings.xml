@@ -22,4 +22,16 @@
 
     <string name="pref_url_movies_picture" translatable="false">http://image.tmdb.org/t/p/w185</string>
 
+    <string name="empty_movies_list">No internet connection, please connect your device!</string>
+
+    <!-- Empty Weather Database -->
+    <string name="empty_movie_list">No Movie Information Available</string>
+    <string name="empty_movie_list_no_network">No Movie information available. The network is not available to fetch Movie data.</string>
+    <string name="empty_movie_list_server_down">No Movie information available. The server is not returning data.</string>
+    <string name="empty_movie_list_server_error">No Movie information available. The server is not returning valid data. Please check for an updated version of Movie.</string>
+    <string name="empty_movie_list_invalid_settings">No Movie information available. The settings are not recognized by the Movie server.</string>
+
+    <!-- For Shared Element Transitions -->
+    <string name="detail_icon_transition_name" translatable="false">TN_DetailIcon</string>
+
 </resources>

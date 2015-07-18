@@ -24,6 +24,9 @@ import com.dromescu.popularmovies.data.MoviesContract;
 public class DetailsFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor> {
     private final static String LOG_TAG = DetailsFragment.class.getSimpleName();
     private static final int DETAILS_LOADER = 0;
+    static final String DETAIL_URI = "URI";
+    private Uri mUri;
+    public static final String KEY_MOVIE_ID = "movie_id";
 
     private long mMovieId;
     // final private Context mContext;
@@ -49,18 +52,22 @@ public class DetailsFragment extends Fragment implements LoaderManager.LoaderCal
         DetailsFragment detailFragment = new DetailsFragment();
 
         Bundle bundle = new Bundle();
-        bundle.putLong(DetailsActivity.KEY_MOVIE_ID, movieId);
+        bundle.putLong(DetailsFragment.KEY_MOVIE_ID, movieId);
         detailFragment.setArguments(bundle);
 
         return detailFragment;
     }
 
-    @Nullable
+
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+
         Bundle arguments = getArguments();
+
         if (arguments != null) {
-            mMovieId = arguments.getLong(DetailsActivity.KEY_MOVIE_ID);
+            mMovieId = arguments.getLong(this.KEY_MOVIE_ID, 1);
+            mUri = MoviesContract.MovieEntry.buildMoviesUri(this.mMovieId);
         }
 
         View rootView = inflater.inflate(R.layout.fragment_details, container, false);
@@ -73,45 +80,49 @@ public class DetailsFragment extends Fragment implements LoaderManager.LoaderCal
 
         return rootView;
     }
-
+/*
     @Override
     public void onResume() {
         super.onResume();
         Bundle bundle = getArguments();
-        if (bundle != null && bundle.containsKey(DetailsActivity.KEY_MOVIE_ID)
+        if (bundle != null && bundle.containsKey(DetailsFragment.KEY_MOVIE_ID)
                 && mMovieId != 0) {
             getLoaderManager().restartLoader(DETAILS_LOADER, null, this);
         }
     }
-
+*/
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        getLoaderManager().initLoader(DETAILS_LOADER, null, this);
         super.onActivityCreated(savedInstanceState);
-        Bundle bundle = getArguments();
-        if (bundle != null) {
-            getLoaderManager().initLoader(DETAILS_LOADER, null, this);
-        }
     }
+
 
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-        Uri movieById = MoviesContract.MovieEntry.buildMoviesUri(this.mMovieId);
-        return new CursorLoader(getActivity(),
-                movieById,
-                DETAILS_COLUMNS,
-                null,
-                null,
-                null);
+        if (null != mUri) {
+            // Now create and return a CursorLoader that will take care of
+            // creating a Cursor for the data being displayed.
+            return new CursorLoader(
+                    getActivity(),
+                    mUri,
+                    DETAILS_COLUMNS,
+                    null,
+                    null,
+                    null);
+        }
+        return null;
     }
 
     @Override
-    public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+    public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
         Log.d(LOG_TAG, "onLoadFinished");
-        if (data == null || !data.moveToFirst()) {
+
+        if (cursor == null || !cursor.moveToFirst()) {
             return;
         }
 
-        String imgUrl = Utility.getArtUrlForMovie(getActivity()) + data.getString(data.getColumnIndex(MoviesContract.MovieEntry.COLUMN_POSTER_PATH));
+        String imgUrl = Utility.getArtUrlForMovie(getActivity()) + cursor.getString(cursor.getColumnIndex(MoviesContract.MovieEntry.COLUMN_POSTER_PATH));
 
         Glide.with(getActivity())
                 .load(imgUrl)
@@ -119,16 +130,16 @@ public class DetailsFragment extends Fragment implements LoaderManager.LoaderCal
                 .crossFade()
                 .into(this.poster);
 
-        String title = data.getString(data.getColumnIndex(MoviesContract.MovieEntry.COLUMN_TITLE));
+        String title = cursor.getString(cursor.getColumnIndex(MoviesContract.MovieEntry.COLUMN_TITLE));
         this.title.setText(title);
 
-        String year = data.getString(data.getColumnIndex(MoviesContract.MovieEntry.COLUMN_RELEASE_DATE));
+        String year = cursor.getString(cursor.getColumnIndex(MoviesContract.MovieEntry.COLUMN_RELEASE_DATE));
         this.year.setText(year);
 
-        double averageRating = data.getDouble(data.getColumnIndex(MoviesContract.MovieEntry.COLUMN_VOTE_AVERAGE));
+        double averageRating = cursor.getDouble(cursor.getColumnIndex(MoviesContract.MovieEntry.COLUMN_VOTE_AVERAGE));
         this.rating.setText(String.format(getString(R.string.details_rating), averageRating));
 
-        String overview = data.getString(data.getColumnIndex(MoviesContract.MovieEntry.COLUMN_OVERVIEW));
+        String overview = cursor.getString(cursor.getColumnIndex(MoviesContract.MovieEntry.COLUMN_OVERVIEW));
         this.overview.setText(overview);
     }
 

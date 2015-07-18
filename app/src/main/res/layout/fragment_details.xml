@@ -16,7 +16,7 @@
             android:paddingTop="@dimen/title_vertical_padding"
             android:paddingBottom="@dimen/title_vertical_padding"
             android:paddingLeft="@dimen/title_horizontal_padding"
-            android:background="@color/primary_green"
+            android:background="@color/primary"
             android:textColor="@android:color/white"
             android:textAppearance="?android:textAppearanceLarge"
             android:elevation="@dimen/details_title_elevation"/>
@@ -39,7 +39,8 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:adjustViewBounds="true"/>
+                    android:adjustViewBounds="true"
+                    android:transitionName="@string/detail_icon_transition_name"/>
 
                 <LinearLayout
                     android:layout_width="0dp"
