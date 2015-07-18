@@ -20,4 +20,6 @@
     <string name="pref_list_popular" translatable="false">popularity.desc</string>
     <string name="pref_list_rating" translatable="false">vote_average.desc</string>
 
+    <string name="pref_url_movies_picture" translatable="false">http://image.tmdb.org/t/p/w185</string>
+
 </resources>

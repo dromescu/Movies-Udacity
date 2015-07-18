@@ -2,7 +2,16 @@
 <resources>
     <color name="semitransparent_black">#55000000</color>
 
-    <color name="primary_green">#43A047</color>
-    <color name="primary_green_dark">#388E3C</color>
+
+    <color name="white">#FFFFFF</color>
+    <color name="grey">#cccccc</color>
+    <color name="grey_700">#646464</color>
+    <color name="black">#000000</color>
+
+    <!-- using the "Light Blue" Material Palette -->
+    <color name="primary">#03A9F4</color>  <!-- 500 -->
+    <color name="primary_dark">#0288D1</color>  <!-- 700 -->
+    <color name="primary_light">#B3E5FC</color> <!-- 100 -->
+    <color name="accent">#FFD740</color>
 
 </resources>
