@@ -33,20 +33,20 @@ import java.util.Vector;
 /**
  * Created by dromescu on 10.07.15.
  */
-public class PopularMoviesSyncAdapter extends AbstractThreadedSyncAdapter {
+public class MoviesSyncAdapter extends AbstractThreadedSyncAdapter {
 
-    private final String LOG_TAG = PopularMoviesSyncAdapter.class.getSimpleName();
+    private final String LOG_TAG = MoviesSyncAdapter.class.getSimpleName();
 
-    private static final String MOVIEDB_API_KEY     = "375f92998282f1a4bb47492812dc0123";
+    private static final String MOVIEDB_API_KEY     = "44a57b2126036f3accf8a36cdd84813f";
     private static final String MOVIEDB_URL         = "http://api.themoviedb.org/3/discover/movie";
 
-    public static final int SYNC_INTERVAL = 60 * 3;
+    public static final int SYNC_INTERVAL = 60 * 180;
     public static final int SYNC_FLEXTIME = SYNC_INTERVAL/3;
 
     private static final long THREE_HOURS_IN_MILLIS = 1000 * 60 * 60 * 3;
-    private static final int MOVIES_NOTIFICATION_ID = 7006; // Just because 7*6 is 42 :)
+    private static final int MOVIES_NOTIFICATION_ID = 3004;
 
-    public PopularMoviesSyncAdapter(Context context, boolean autoInitialize) {
+    public MoviesSyncAdapter(Context context, boolean autoInitialize) {
         super(context, autoInitialize);
     }
 
@@ -235,7 +235,7 @@ public class PopularMoviesSyncAdapter extends AbstractThreadedSyncAdapter {
     }
 
     private static void onAccountCreated(Account newAccount, Context context) {
-        PopularMoviesSyncAdapter.configurePeriodSync(context, SYNC_INTERVAL, SYNC_FLEXTIME);
+        MoviesSyncAdapter.configurePeriodSync(context, SYNC_INTERVAL, SYNC_FLEXTIME);
 
         ContentResolver.setSyncAutomatically(newAccount, context.getString(R.string.content_authority), true);
 

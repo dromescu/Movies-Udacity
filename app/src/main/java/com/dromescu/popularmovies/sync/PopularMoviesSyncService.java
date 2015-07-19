@@ -12,14 +12,14 @@ public class PopularMoviesSyncService extends Service {
     private static final String LOG_TAG = PopularMoviesSyncService.class.getSimpleName();
 
     public static final Object sSyncAdapterLock = new Object();
-    private static PopularMoviesSyncAdapter sMoviesSyncAdapter = null;
+    private static MoviesSyncAdapter sMoviesSyncAdapter = null;
 
     @Override
     public void onCreate() {
         Log.d(LOG_TAG, "onCreate - PopularMoviesSyncService");
         synchronized (sSyncAdapterLock) {
             if (sMoviesSyncAdapter == null) {
-                sMoviesSyncAdapter = new PopularMoviesSyncAdapter(getApplicationContext(), true);
+                sMoviesSyncAdapter = new MoviesSyncAdapter(getApplicationContext(), true);
             }
         }
     }

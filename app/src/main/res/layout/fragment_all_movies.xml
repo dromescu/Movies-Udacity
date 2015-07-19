@@ -29,6 +29,8 @@
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:paddingStart="@dimen/activity_horizontal_margin"
         android:paddingTop="@dimen/activity_vertical_margin"
-        android:text="@string/empty_movies_list" />
+        android:text="@string/empty_movie_list" />
+
     </android.support.design.widget.CoordinatorLayout>
+
 </FrameLayout>

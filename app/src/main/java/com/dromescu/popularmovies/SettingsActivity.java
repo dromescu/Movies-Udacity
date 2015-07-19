@@ -10,7 +10,7 @@ import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
 
 import com.dromescu.popularmovies.data.MoviesContract;
-import com.dromescu.popularmovies.sync.PopularMoviesSyncAdapter;
+import com.dromescu.popularmovies.sync.MoviesSyncAdapter;
 
 /**
  * Created by dromescu on 15.07.15.
@@ -46,7 +46,7 @@ public class SettingsActivity extends PreferenceActivity implements Preference.O
 
         if (mBindingPreference) {
             if (preference.getKey().equals(getString(R.string.pref_list_key))) {
-                PopularMoviesSyncAdapter.syncImmediately(this);
+                MoviesSyncAdapter.syncImmediately(this);
             } else {
                 // notify code that selected list may be impacted
                 getContentResolver().notifyChange(MoviesContract.MovieEntry.CONTENT_URI, null);

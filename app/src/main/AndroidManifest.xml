@@ -48,7 +48,7 @@
             android:exported="false"/>
 
 
-        <service android:name="com.dromescu.popularmovies.sync.PopularMoviesAuthenticatorService">
+        <service android:name=".sync.MoviesAuthenticatorService">
             <intent-filter>
                 <action android:name="android.accounts.AccountAuthenticator"/>
             </intent-filter>

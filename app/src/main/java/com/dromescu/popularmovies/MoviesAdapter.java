@@ -40,16 +40,6 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MoviesAdap
 
         if (viewGroup instanceof RecyclerView) {
             int layoutId = -1;
-        /*    switch (viewType) {
-                case VIEW_TYPE_TODAY: {
-                    layoutId = R.layout.list_item_forecast_today;
-                    break;
-                }
-                case VIEW_TYPE_FUTURE_DAY: {
-                    layoutId = R.layout.list_item_forecast;
-                    break;
-                }
-            }*/
 
             View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.gridview_poster_item, viewGroup, false);
             view.setFocusable(true);

@@ -7,12 +7,12 @@ import android.os.IBinder;
 /**
  * Created by dromescu on 15.07.15.
  */
-public class PopularMoviesAuthenticatorService extends Service {
-    private PopularMoviesAuthenticator mAuthenticator;
+public class MoviesAuthenticatorService extends Service {
+    private MoviesAuthenticator mAuthenticator;
 
     @Override
     public void onCreate() {
-        this.mAuthenticator = new PopularMoviesAuthenticator(this);
+        this.mAuthenticator = new MoviesAuthenticator(this);
     }
 
     @Override

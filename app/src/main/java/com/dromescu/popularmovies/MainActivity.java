@@ -10,7 +10,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.dromescu.popularmovies.sync.PopularMoviesSyncAdapter;
+import com.dromescu.popularmovies.sync.MoviesSyncAdapter;
 
 
 public class MainActivity extends AppCompatActivity implements MoviesFragment.MovieSelectedCallback {
@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity implements MoviesFragment.Mo
             this.mTwoPane = false;
         }
 
-        PopularMoviesSyncAdapter.initializeSyncAdapter(this);
+        MoviesSyncAdapter.initializeSyncAdapter(this);
     }
 
     @Override

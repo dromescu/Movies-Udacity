@@ -10,9 +10,9 @@ import android.os.Bundle;
 /**
  * Created by dromescu on 15.07.15.
  */
-public class PopularMoviesAuthenticator extends AbstractAccountAuthenticator {
+public class MoviesAuthenticator extends AbstractAccountAuthenticator {
 
-    public PopularMoviesAuthenticator(Context context) {
+    public MoviesAuthenticator(Context context) {
         super(context);
     }
 

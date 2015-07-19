@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
+import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -70,7 +71,8 @@ public class MoviesFragment extends Fragment implements LoaderManager.LoaderCall
         final View rootView = inflater.inflate(R.layout.fragment_all_movies, container, false);
 
         mRecyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerview_movies);
-        mRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
+        mRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 3));
+        mRecyclerView.setItemAnimator(new DefaultItemAnimator());
         View emptyView = rootView.findViewById(R.id.recyclerview_movie_empty);
         mRecyclerView.setHasFixedSize(true);
 
