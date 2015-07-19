@@ -1,21 +1,38 @@
 package com.dromescu.popularmovies;
 
-import android.annotation.TargetApi;
-import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
-import android.preference.ListPreference;
-import android.preference.Preference;
-import android.preference.PreferenceActivity;
-import android.preference.PreferenceManager;
-
-import com.dromescu.popularmovies.data.MoviesContract;
-import com.dromescu.popularmovies.sync.MoviesSyncAdapter;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 
 /**
  * Created by dromescu on 15.07.15.
  */
-public class SettingsActivity extends PreferenceActivity implements Preference.OnPreferenceChangeListener {
+
+public class SettingsActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_settings);
+
+        final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        assert getSupportActionBar() != null;
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
+
+    @Override
+    public void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        getFragmentManager().beginTransaction().replace(R.id.content, new SettingsFragment()).commit();
+    }
+
+}
+
+
+
+
+/*public class SettingsActivity extends PreferenceActivity implements Preference.OnPreferenceChangeListener {
 
     boolean mBindingPreference;
 
@@ -73,3 +90,4 @@ public class SettingsActivity extends PreferenceActivity implements Preference.O
     }
 
 }
+*/

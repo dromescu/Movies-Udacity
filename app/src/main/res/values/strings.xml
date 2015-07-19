@@ -11,13 +11,22 @@
     <string name="sync_account_type" translatable="false">popularmovies.dromescu.com</string>
     <string name="content_authority" translatable="false">com.dromescu.popularmovies</string>
 
-    <!-- Strings for preferences -->
-    <string name="pref_list_to_show">Sort movies:</string>
-    <string name="pref_list_key">movies_sorting</string>
-    <string name="pref_list_label_popular">Most popular</string>
-    <string name="pref_list_label_rated">Highest rated</string>
-    <string name="pref_list_popular" translatable="false">popularity.desc</string>
-    <string name="pref_list_rating" translatable="false">vote_average.desc</string>
+
+    <string name="pref_sort_label">Sort By</string>
+    <string name="pref_sort_key" translatable="false">sort_option</string>
+    <string-array name="pref_sort_option_labels">
+        <item>Most Popular</item>
+        <!--<item>Most Popular by Highest Rating</item>-->
+        <item>Highest Rated by Total votes</item>
+        <item>Highest Rated by Average vote</item>
+    </string-array>
+    <string-array name="pref_sort_option_values">
+        <item translatable="false">popularity.desc</item>
+        <!--<item>local_sort</item>-->
+        <item translatable="false">vote_count.desc</item>
+        <item translatable="false">vote_average.desc</item>
+    </string-array>
+    <string name="pref_sort_option_default" translatable="false">popularity.desc</string>
 
     <string name="pref_url_movies_picture" translatable="false">http://image.tmdb.org/t/p/w185</string>
 

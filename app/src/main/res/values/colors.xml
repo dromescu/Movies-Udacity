@@ -2,16 +2,23 @@
 <resources>
     <color name="semitransparent_black">#55000000</color>
 
-
+    <color name="black">#FF000000</color>
     <color name="white">#FFFFFF</color>
     <color name="grey">#cccccc</color>
+    <color name="dark_grey">#333333</color>
     <color name="grey_700">#646464</color>
-    <color name="black">#000000</color>
+    <color name="white_grey">#EEEEEE</color>
+    <color name="window_background">#FFF5F5F5</color>
+
 
     <!-- using the "Light Blue" Material Palette -->
-    <color name="primary">#03A9F4</color>  <!-- 500 -->
-    <color name="primary_dark">#0288D1</color>  <!-- 700 -->
-    <color name="primary_light">#B3E5FC</color> <!-- 100 -->
+    <color name="primary">#03A9F4</color>
+    <!-- 500 -->
+    <color name="primary_dark">#0288D1</color>
+    <!-- 700 -->
+    <color name="primary_light">#B3E5FC</color>
+    <!-- 100 -->
     <color name="accent">#FFD740</color>
+
 
 </resources>

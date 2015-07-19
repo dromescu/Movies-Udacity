@@ -8,15 +8,15 @@ import android.util.Log;
 /**
  * Created by dromescu on 10.07.15.
  */
-public class PopularMoviesSyncService extends Service {
-    private static final String LOG_TAG = PopularMoviesSyncService.class.getSimpleName();
+public class MoviesSyncService extends Service {
+    private static final String LOG_TAG = MoviesSyncService.class.getSimpleName();
 
     public static final Object sSyncAdapterLock = new Object();
     private static MoviesSyncAdapter sMoviesSyncAdapter = null;
 
     @Override
     public void onCreate() {
-        Log.d(LOG_TAG, "onCreate - PopularMoviesSyncService");
+        Log.d(LOG_TAG, "onCreate - MoviesSyncService");
         synchronized (sSyncAdapterLock) {
             if (sMoviesSyncAdapter == null) {
                 sMoviesSyncAdapter = new MoviesSyncAdapter(getApplicationContext(), true);

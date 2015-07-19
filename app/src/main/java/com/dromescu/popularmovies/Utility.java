@@ -14,7 +14,7 @@ import android.preference.PreferenceManager;
 public class Utility {
     public static String getPrefferedMoviesList(final Context context) {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-        return prefs.getString(context.getString(R.string.pref_list_key), context.getString(R.string.pref_list_popular));
+        return prefs.getString(context.getString(R.string.pref_sort_key), context.getString(R.string.pref_sort_option_default));
     }
 
     /**

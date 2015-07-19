@@ -1,0 +1,6 @@
+<resources>
+    <integer name="movie_title_lines">2</integer>
+    <integer name="movie_overview_min_lines">3</integer>
+    <integer name="dual_card_view_weight">2</integer>
+    <integer name="dual_card_view_weight_total">4</integer>
+</resources>

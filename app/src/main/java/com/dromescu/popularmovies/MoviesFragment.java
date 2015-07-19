@@ -130,7 +130,7 @@ public class MoviesFragment extends Fragment implements LoaderManager.LoaderCall
         final String sortOrder;
 
         String sortCriteria = Utility.getPrefferedMoviesList(getActivity());
-        if (sortCriteria.equals(getString(R.string.pref_list_popular))) {
+        if (sortCriteria.equals(getString(R.string.pref_sort_option_default))) {
             sortOrder = MoviesContract.MovieEntry.COLUMN_POPULARITY + " DESC";
         } else {
             sortOrder = MoviesContract.MovieEntry.COLUMN_VOTE_AVERAGE + " DESC";
