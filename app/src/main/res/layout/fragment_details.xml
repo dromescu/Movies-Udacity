@@ -74,14 +74,15 @@
                 android:layout_marginBottom="@dimen/details_vertical_small_margin"
                 android:layout_marginTop="@dimen/details_vertical_small_margin" />
 
-            <ImageView
-                android:id="@+id/details_movie_backdrop"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:adjustViewBounds="true" />
 
         </LinearLayout>
+
+        <ImageView
+            android:id="@+id/details_movie_backdrop"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:adjustViewBounds="true" />
 
     </LinearLayout>
 

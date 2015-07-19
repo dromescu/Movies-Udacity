@@ -24,9 +24,9 @@ public class Utility {
      * @param
      * @return url for the corresponding movie artwork. default artwork if no relation is found.
      */
-    public static String getArtUrlForMovie(Context context) {
+    public static String getArtUrlForMovie(Context context, String dimens) {
 
-         String imageUrl = context.getString(R.string.pref_url_movies_picture);
+         String imageUrl = context.getString(R.string.pref_url_movies_picture) + "/" + dimens;
 
         return imageUrl;
     }

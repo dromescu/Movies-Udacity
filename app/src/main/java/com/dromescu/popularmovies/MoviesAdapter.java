@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.dromescu.popularmovies.data.MoviesContract;
+import com.dromescu.popularmovies.models.IMDB;
 
 /**
  * Created by dromescu on 15.07.15.
@@ -65,7 +66,7 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MoviesAdap
         final String movieTitle = mCursor.getString(MoviesFragment.COL_TITLE);
         holder.title.setText(movieTitle);
 
-        String imageUrl = Utility.getArtUrlForMovie(mContext) + mCursor.getString(MoviesFragment.COL_IMAGE_PATH);
+        String imageUrl = Utility.getArtUrlForMovie(mContext, IMDB.SIZE_W185) + mCursor.getString(MoviesFragment.COL_IMAGE_PATH);
 
         Glide.with(mContext)
                 .load(imageUrl)

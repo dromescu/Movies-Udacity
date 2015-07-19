@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.dromescu.popularmovies.data.MoviesContract;
+import com.dromescu.popularmovies.models.IMDB;
 
 /**
  * Created by dromescu on 15.07.15.
@@ -127,7 +128,7 @@ public class DetailsFragment extends Fragment implements LoaderManager.LoaderCal
             return;
         }
 
-        String imgUrl = Utility.getArtUrlForMovie(getActivity()) + cursor.getString(cursor.getColumnIndex(MoviesContract.MovieEntry.COLUMN_POSTER_PATH));
+        String imgUrl = Utility.getArtUrlForMovie(getActivity(), IMDB.SIZE_W185) + cursor.getString(cursor.getColumnIndex(MoviesContract.MovieEntry.COLUMN_POSTER_PATH));
 
         Glide.with(getActivity())
                 .load(imgUrl)
@@ -147,7 +148,7 @@ public class DetailsFragment extends Fragment implements LoaderManager.LoaderCal
         String overview = cursor.getString(cursor.getColumnIndex(MoviesContract.MovieEntry.COLUMN_OVERVIEW));
         this.overview.setText(overview);
 
-        imgUrl = Utility.getArtUrlForMovie(getActivity()) + cursor.getString(cursor.getColumnIndex(MoviesContract.MovieEntry.COLUMN_BACKDROP_PATH));
+        imgUrl = Utility.getArtUrlForMovie(getActivity(), IMDB.SIZE_W342) + cursor.getString(cursor.getColumnIndex(MoviesContract.MovieEntry.COLUMN_BACKDROP_PATH));
 
         Glide.with(getActivity())
                 .load(imgUrl)
