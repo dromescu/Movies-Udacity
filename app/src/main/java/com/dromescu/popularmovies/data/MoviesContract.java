@@ -30,33 +30,31 @@ public class MoviesContract {
 
         public static final String TABLE_NAME = "movies";
 
+
         // ID in terms of themoviedb.com
         public static final String COLUMN_MOVIEDB_ID = "id";
-
         // is this movie adult
         public static final String COLUMN_IS_ADULT = "is_adult";
-
         // original language
         public static final String COLUMN_ORIGINAL_LANGUAGE = "original_lang";
-
         // title
         public static final String COLUMN_TITLE = "original_title";
-
         // overview
         public static final String COLUMN_OVERVIEW = "original_overview";
-
         // release date
         public static final String COLUMN_RELEASE_DATE = "release_date";
-
         // average vote
         public static final String COLUMN_VOTE_AVERAGE = "vote_average";
-
+        // vote count
+        public static final String COLUMN_VOTE_COUNT = "vote_count";
         // poster url path
         public static final String COLUMN_POSTER_PATH = "poster_url";
-
-        // poster url path
+        // backdrop url path
+        public static final String COLUMN_BACKDROP_PATH = "backdrop_url";
+        // filter
         public static final String COLUMN_POPULARITY = "popularity";
-
+        //My Stars
+     //   public static final String COLUMN_STAR = "local_star";
 
         public static Uri buildMoviesUri(long id) {
             return ContentUris.withAppendedId(CONTENT_URI, id);

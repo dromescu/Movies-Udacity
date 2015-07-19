@@ -72,9 +72,12 @@ public class MoviesSyncAdapter extends AbstractThreadedSyncAdapter {
                 String releaseDate = cinema.getString("release_date");
                 String title = cinema.getString("title");
                 double averageVote = cinema.getDouble("vote_average");
+                double countVote = cinema.getDouble("vote_count");
                 boolean isAdult = cinema.getBoolean("adult");
                 String posterPath = cinema.getString("poster_path");
+                String backdropPath = cinema.getString("backdrop_path");
                 double popularity = cinema.getDouble("popularity");
+
 
                 ContentValues movieValues = new ContentValues();
 
@@ -84,8 +87,10 @@ public class MoviesSyncAdapter extends AbstractThreadedSyncAdapter {
                 movieValues.put(MoviesContract.MovieEntry.COLUMN_RELEASE_DATE, releaseDate);
                 movieValues.put(MoviesContract.MovieEntry.COLUMN_TITLE, title);
                 movieValues.put(MoviesContract.MovieEntry.COLUMN_VOTE_AVERAGE, averageVote);
+                movieValues.put(MoviesContract.MovieEntry.COLUMN_VOTE_COUNT, countVote);
                 movieValues.put(MoviesContract.MovieEntry.COLUMN_IS_ADULT, isAdult);
                 movieValues.put(MoviesContract.MovieEntry.COLUMN_POSTER_PATH, posterPath);
+                movieValues.put(MoviesContract.MovieEntry.COLUMN_BACKDROP_PATH, backdropPath);
                 movieValues.put(MoviesContract.MovieEntry.COLUMN_POPULARITY, popularity);
 
                 cVVector.add(movieValues);

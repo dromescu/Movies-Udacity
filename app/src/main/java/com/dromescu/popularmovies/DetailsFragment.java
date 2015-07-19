@@ -37,15 +37,19 @@ public class DetailsFragment extends Fragment implements LoaderManager.LoaderCal
             MoviesContract.MovieEntry.COLUMN_POSTER_PATH,
             MoviesContract.MovieEntry.COLUMN_RELEASE_DATE,
             MoviesContract.MovieEntry.COLUMN_VOTE_AVERAGE,
-            MoviesContract.MovieEntry.COLUMN_OVERVIEW
+            MoviesContract.MovieEntry.COLUMN_OVERVIEW,
+            MoviesContract.MovieEntry.COLUMN_BACKDROP_PATH,
+            MoviesContract.MovieEntry.COLUMN_VOTE_COUNT
     };
 
     private ImageView poster;
+    private ImageView backdrop;
     private TextView title;
     private TextView year;
     private TextView duration;
     private TextView rating;
     private TextView overview;
+    private TextView votecount;
 
 
     public static DetailsFragment newInstance(long movieId) {
@@ -77,6 +81,7 @@ public class DetailsFragment extends Fragment implements LoaderManager.LoaderCal
         this.duration = (TextView) rootView.findViewById(R.id.details_movie_duration);
         this.rating = (TextView) rootView.findViewById(R.id.details_movie_rating);
         this.overview = (TextView) rootView.findViewById(R.id.details_movie_overview);
+        this.backdrop = (ImageView) rootView.findViewById(R.id.details_movie_backdrop);
 
         return rootView;
     }
@@ -141,6 +146,14 @@ public class DetailsFragment extends Fragment implements LoaderManager.LoaderCal
 
         String overview = cursor.getString(cursor.getColumnIndex(MoviesContract.MovieEntry.COLUMN_OVERVIEW));
         this.overview.setText(overview);
+
+        imgUrl = Utility.getArtUrlForMovie(getActivity()) + cursor.getString(cursor.getColumnIndex(MoviesContract.MovieEntry.COLUMN_BACKDROP_PATH));
+
+        Glide.with(getActivity())
+                .load(imgUrl)
+                .error(Utility.getDefaultImageForMovie(getActivity()))
+                .crossFade()
+                .into(this.backdrop);
     }
 
     @Override
