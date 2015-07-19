@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <bool name="movie_title_focus">true</bool>
+    <bool name="movie_item_base_selectable">true</bool>
+    <bool name="movie_item_base_focusable">true</bool>
+</resources>

@@ -4,10 +4,13 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -40,17 +43,18 @@ public class DetailsFragment extends Fragment implements LoaderManager.LoaderCal
             MoviesContract.MovieEntry.COLUMN_VOTE_AVERAGE,
             MoviesContract.MovieEntry.COLUMN_OVERVIEW,
             MoviesContract.MovieEntry.COLUMN_BACKDROP_PATH,
-            MoviesContract.MovieEntry.COLUMN_VOTE_COUNT
+            MoviesContract.MovieEntry.COLUMN_VOTE_COUNT,
+            MoviesContract.MovieEntry.COLUMN_POPULARITY
     };
 
     private ImageView poster;
     private ImageView backdrop;
-    private TextView title;
-    private TextView year;
+    private TextView release;
     private TextView duration;
     private TextView rating;
     private TextView overview;
     private TextView votecount;
+    private TextView popularity;
 
 
     public static DetailsFragment newInstance(long movieId) {
@@ -75,14 +79,17 @@ public class DetailsFragment extends Fragment implements LoaderManager.LoaderCal
             mUri = MoviesContract.MovieEntry.buildMoviesUri(this.mMovieId);
         }
 
+
+
         View rootView = inflater.inflate(R.layout.fragment_details, container, false);
         this.poster = (ImageView) rootView.findViewById(R.id.details_movie_poster);
-        this.title = (TextView) rootView.findViewById(R.id.details_movie_title);
-        this.year = (TextView) rootView.findViewById(R.id.details_movie_year);
-        this.duration = (TextView) rootView.findViewById(R.id.details_movie_duration);
+        this.release = (TextView) rootView.findViewById(R.id.details_movie_year);
+     //   this.duration = (TextView) rootView.findViewById(R.id.details_movie_duration);
         this.rating = (TextView) rootView.findViewById(R.id.details_movie_rating);
         this.overview = (TextView) rootView.findViewById(R.id.details_movie_overview);
-        this.backdrop = (ImageView) rootView.findViewById(R.id.details_movie_backdrop);
+        this.backdrop = (ImageView) rootView.findViewById(R.id.details_backdrop);
+        this.popularity = (TextView) rootView.findViewById(R.id.popularity);
+
 
         return rootView;
     }
@@ -128,7 +135,43 @@ public class DetailsFragment extends Fragment implements LoaderManager.LoaderCal
             return;
         }
 
-        String imgUrl = Utility.getArtUrlForMovie(getActivity(), IMDB.SIZE_W185) + cursor.getString(cursor.getColumnIndex(MoviesContract.MovieEntry.COLUMN_POSTER_PATH));
+        String imgUrl = Utility.getArtUrlForMovie(getActivity(), IMDB.SIZE_W342) +
+                cursor.getString(cursor.getColumnIndex(MoviesContract.MovieEntry.COLUMN_BACKDROP_PATH));
+
+        AppCompatActivity activity = (AppCompatActivity)getActivity();
+        Toolbar toolbarView = (Toolbar) getView().findViewById(R.id.details_toolbar);
+
+
+        activity.setSupportActionBar(toolbarView);
+        assert activity.getSupportActionBar() != null;
+        activity.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
+
+        Glide.with(activity)
+                .load(imgUrl)
+                .error(Utility.getDefaultImageForMovie(getActivity()))
+                .crossFade()
+                .into(this.backdrop);
+
+        // Title
+        String title = cursor.getString(cursor.getColumnIndex(MoviesContract.MovieEntry.COLUMN_TITLE));
+        final CollapsingToolbarLayout collapsingToolbar =
+                (CollapsingToolbarLayout) activity.findViewById(R.id.collapsing_toolbar);
+        collapsingToolbar.setTitle(title);
+
+        // Overview
+        this.overview.setText(cursor.getString(cursor.getColumnIndex(MoviesContract.MovieEntry.COLUMN_OVERVIEW)));
+
+        // Rating
+        this.rating.setText(String.format("%.2f",
+                cursor.getDouble(cursor.getColumnIndex(MoviesContract.MovieEntry.COLUMN_VOTE_AVERAGE)))
+                + " / 10 - " + cursor.getDouble(cursor.getColumnIndex(MoviesContract.MovieEntry.COLUMN_VOTE_COUNT)) + " votes");
+
+        // popularity
+        this.popularity.setText(String.format("%.1f", cursor.getDouble(cursor.getColumnIndex(MoviesContract.MovieEntry.COLUMN_POPULARITY))));
+
+        imgUrl = Utility.getArtUrlForMovie(getActivity(), IMDB.SIZE_W185) + cursor.getString(cursor.getColumnIndex(MoviesContract.MovieEntry.COLUMN_POSTER_PATH));
 
         Glide.with(getActivity())
                 .load(imgUrl)
@@ -136,25 +179,35 @@ public class DetailsFragment extends Fragment implements LoaderManager.LoaderCal
                 .crossFade()
                 .into(this.poster);
 
-        String title = cursor.getString(cursor.getColumnIndex(MoviesContract.MovieEntry.COLUMN_TITLE));
-        this.title.setText(title);
+        // Release Date
+        String year = cursor.getString((cursor.getColumnIndex(MoviesContract.MovieEntry.COLUMN_RELEASE_DATE)));
+        this.release.setText(year);
 
-        String year = cursor.getString(cursor.getColumnIndex(MoviesContract.MovieEntry.COLUMN_RELEASE_DATE));
-        this.year.setText(year);
 
-        double averageRating = cursor.getDouble(cursor.getColumnIndex(MoviesContract.MovieEntry.COLUMN_VOTE_AVERAGE));
-        this.rating.setText(String.format(getString(R.string.details_rating), averageRating));
 
-        String overview = cursor.getString(cursor.getColumnIndex(MoviesContract.MovieEntry.COLUMN_OVERVIEW));
-        this.overview.setText(overview);
 
-        imgUrl = Utility.getArtUrlForMovie(getActivity(), IMDB.SIZE_W342) + cursor.getString(cursor.getColumnIndex(MoviesContract.MovieEntry.COLUMN_BACKDROP_PATH));
+   /*
+        // We need to start the enter transition after the data has loaded
+        if ( mTransitionAnimation ) {
+            activity.supportStartPostponedEnterTransition();
 
-        Glide.with(getActivity())
-                .load(imgUrl)
-                .error(Utility.getDefaultImageForMovie(getActivity()))
-                .crossFade()
-                .into(this.backdrop);
+            if ( null != toolbarView ) {
+                activity.setSupportActionBar(toolbarView);
+
+                activity.getSupportActionBar().setDisplayShowTitleEnabled(false);
+                activity.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            }
+        } else {
+            if ( null != toolbarView ) {
+                Menu menu = toolbarView.getMenu();
+                if ( null != menu ) menu.clear();
+                toolbarView.inflateMenu(R.menu.detailfragment);
+                finishCreatingMenu(toolbarView.getMenu());
+            }
+        }
+*/
+
+
     }
 
     @Override

@@ -15,7 +15,6 @@ public class DetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
 
-
         if (savedInstanceState == null) {
 
             // Create the detail fragment and add it to the activity

@@ -64,33 +64,6 @@ public class MovieParcel implements Parcelable {
     }
 
 
-// Didnt get to the local soring :/
-    /*@Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((title == null) ? 0 : title.hashCode());
-        return result;
-    }
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        PopularMovieParcel other = (PopularMovieParcel) obj;
-        if (title == null) {
-            if (other.title != null)
-                return false;
-        } else if (!title.equals(other.title))
-            return false;
-        return true;
-    }
-*/
-
-
     public static final Parcelable.Creator<MovieParcel> CREATOR = new Parcelable.Creator<MovieParcel>() {
         @Override
         public MovieParcel createFromParcel(Parcel source) {

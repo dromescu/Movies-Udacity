@@ -40,5 +40,17 @@
 
     <!-- For Shared Element Transitions -->
     <string name="detail_icon_transition_name" translatable="false">TN_DetailIcon</string>
+    <string name="detail_header_backdrop_content_desc">Movie Backdrop</string>
+
+    <!-- For Detail Cards -->
+    <string name="detail_card_rating_label">Rating</string>
+    <string name="detail_card_overview_label">Overview</string>
+    <string name="detail_card_release_date_label">Release Date</string>
+    <string name="detail_card_popularity_label">Popularity</string>
+    <string name="detail_card_poster_label">Poster</string>
+    <string name="detail_card_movie_poster_content_desc">Movie Poster</string>
+    <string name="pref_creator_me">pref_creator_me</string>
+    <string name="pref_creator_me_value">Created by Jaison Brooks</string>
+    <string name="error_message">There was an Error :/</string>
 
 </resources>
