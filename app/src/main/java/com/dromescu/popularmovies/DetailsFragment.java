@@ -22,6 +22,10 @@ import com.bumptech.glide.Glide;
 import com.dromescu.popularmovies.data.MoviesContract;
 import com.dromescu.popularmovies.models.IMDB;
 
+
+import butterknife.ButterKnife;
+import butterknife.Bind;
+
 /**
  * Created by dromescu on 15.07.15.
  */
@@ -47,14 +51,20 @@ public class DetailsFragment extends Fragment implements LoaderManager.LoaderCal
             MoviesContract.MovieEntry.COLUMN_POPULARITY
     };
 
-    private ImageView poster;
-    private ImageView backdrop;
-    private TextView release;
-    private TextView duration;
-    private TextView rating;
-    private TextView overview;
-    private TextView votecount;
-    private TextView popularity;
+    View rootView;
+    @Bind(R.id.details_movie_poster)
+    ImageView poster;
+    @Bind(R.id.details_movie_year)
+    TextView release;
+    @Bind(R.id.details_movie_rating)
+    TextView rating;
+    @Bind(R.id.details_movie_overview)
+    TextView overview;
+    @Bind(R.id.details_backdrop)
+    ImageView backdrop;
+    @Bind(R.id.popularity)
+    TextView popularity;
+
 
 
     public static DetailsFragment newInstance(long movieId) {
@@ -79,17 +89,8 @@ public class DetailsFragment extends Fragment implements LoaderManager.LoaderCal
             mUri = MoviesContract.MovieEntry.buildMoviesUri(this.mMovieId);
         }
 
-
-
-        View rootView = inflater.inflate(R.layout.fragment_details, container, false);
-        this.poster = (ImageView) rootView.findViewById(R.id.details_movie_poster);
-        this.release = (TextView) rootView.findViewById(R.id.details_movie_year);
-     //   this.duration = (TextView) rootView.findViewById(R.id.details_movie_duration);
-        this.rating = (TextView) rootView.findViewById(R.id.details_movie_rating);
-        this.overview = (TextView) rootView.findViewById(R.id.details_movie_overview);
-        this.backdrop = (ImageView) rootView.findViewById(R.id.details_backdrop);
-        this.popularity = (TextView) rootView.findViewById(R.id.popularity);
-
+        rootView = inflater.inflate(R.layout.fragment_details, container, false);
+        ButterKnife.bind(this,rootView);
 
         return rootView;
     }
