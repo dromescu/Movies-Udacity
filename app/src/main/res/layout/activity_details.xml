@@ -6,4 +6,32 @@
     android:layout_height="match_parent"
     tools:context="com.dromescu.popularmovies.DetailsActivity"
     tools:ignore="MergeRootFrame">
+
+    <!--
+
+<LinearLayout
+    android:layout_width="fill_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <FrameLayout
+        android:name="com.dromescu.popularmovies.DetailsFragment"
+        android:id="@+id/container_details"
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:drawable="@color/accent">
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:name="com.dromescu.popularmovies.TrailersFragment"
+        android:id="@+id/container_trailers"
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:drawable="@color/abc_background_cache_hint_selector_material_dark">
+
+    </FrameLayout>
+
+</LinearLayout>
+    -->
+
 </FrameLayout>

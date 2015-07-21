@@ -52,5 +52,6 @@
     <string name="pref_creator_me">pref_creator_me</string>
     <string name="pref_creator_me_value">Created by Jaison Brooks</string>
     <string name="error_message">There was an Error :/</string>
+    <string name="action_search">Action Start Trailer</string>
 
 </resources>

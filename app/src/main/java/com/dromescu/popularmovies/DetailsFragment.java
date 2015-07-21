@@ -70,6 +70,7 @@ public class DetailsFragment extends Fragment implements LoaderManager.LoaderCal
 
 
     public static DetailsFragment newInstance(long movieId) {
+
         DetailsFragment detailFragment = new DetailsFragment();
 
         Bundle bundle = new Bundle();

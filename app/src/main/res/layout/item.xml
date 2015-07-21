@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -12,7 +11,7 @@
         android:id="@+id/movie_base"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="?android:attr/selectableItemBackground"
+        android:drawable="?android:attr/selectableItemBackground"
         android:clickable="true"
         android:focusable="true"
         android:orientation="vertical">
@@ -22,7 +21,7 @@
             android:id="@+id/title_base"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/dark_grey"
+            android:drawable="@color/dark_grey"
             android:padding="@dimen/movie_title_padding">
 
             <TextView

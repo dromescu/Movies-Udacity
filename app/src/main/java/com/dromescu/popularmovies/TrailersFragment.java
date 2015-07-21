@@ -35,6 +35,17 @@ public class TrailersFragment extends Fragment  {
     private String moviesId;
 
 
+    public static TrailersFragment newInstance(TrailersParcel trailersParcel) {
+
+        TrailersFragment trailersFragment = new TrailersFragment();
+
+        Bundle bundle = new Bundle();
+        bundle.putParcelable(DetailsActivity.OBJ_KEY, trailersParcel);
+        trailersFragment.setArguments(bundle);
+
+        return trailersFragment;
+    }
+
     @Override
     public void onAttach(Activity activity) {
         mContext = activity;
