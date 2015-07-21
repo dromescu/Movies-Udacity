@@ -30,7 +30,9 @@ import butterknife.Bind;
  * Created by dromescu on 15.07.15.
  */
 public class DetailsFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor> {
+
     private final static String LOG_TAG = DetailsFragment.class.getSimpleName();
+
     private static final int DETAILS_LOADER = 0;
     static final String DETAIL_URI = "URI";
     private Uri mUri;

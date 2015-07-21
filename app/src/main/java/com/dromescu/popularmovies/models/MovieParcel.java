@@ -16,7 +16,7 @@ public class MovieParcel implements Parcelable {
     public String original_title;
     public String overview;
     public String release_date;
-    public String poster_path; // Image path <
+    public String poster_path;
     public double popularity;
     public String title;
     public boolean video;

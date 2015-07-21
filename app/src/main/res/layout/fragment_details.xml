@@ -1,170 +1,106 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_content"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context="com.dromescu.popularmovies.DetailsFragment">
+
+    <include layout="@layout/details_toolbar" />
 
 
-    <android.support.design.widget.CoordinatorLayout
-        android:id="@+id/main_content"
+    <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fitsSystemWindows="true">
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <include layout="@layout/details_toolbar" />
-
-        <android.support.v4.widget.NestedScrollView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+            android:orientation="vertical"
+            android:paddingTop="24dp">
 
-            <LinearLayout
+            <RatingBar
+                android:id="@+id/detail_rating_bar"
+                style="@style/MyRatingBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="10dp"
+                android:isIndicator="true"
+                android:numStars="10" />
+
+            <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:paddingTop="24dp">
-
-                <android.support.v7.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/card_margin"
-                    android:layout_marginLeft="@dimen/card_margin"
-                    android:layout_marginRight="@dimen/card_margin">
-
-                    <LinearLayout
-                        style="@style/Widget.CardContent"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/detail_card_overview_label"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Title" />
-
-                        <TextView
-                            android:id="@+id/details_movie_overview"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:minLines="@integer/movie_overview_min_lines"
-                            tools:text="Film Overview" />
-
-                    </LinearLayout>
-
-                </android.support.v7.widget.CardView>
-
-                <android.support.v7.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/card_margin">
-
-                    <LinearLayout
-                        style="@style/Widget.CardContent"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/detail_card_rating_label"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Title" />
-
-                        <TextView
-                            android:id="@+id/details_movie_rating"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            tools:text="5 Stars" />
-
-                    </LinearLayout>
-
-                </android.support.v7.widget.CardView>
-
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/card_margin"
+                android:layout_marginLeft="@dimen/card_margin"
+                android:layout_marginRight="@dimen/card_margin">
 
                 <LinearLayout
+                    style="@style/Widget.CardContent"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:weightSum="@integer/dual_card_view_weight_total">
+                    android:layout_height="wrap_content">
 
-                    <android.support.v7.widget.CardView
+                    <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="@dimen/card_margin"
-                        android:layout_marginLeft="@dimen/card_margin"
-                        android:layout_marginRight="@dimen/card_margin"
-                        android:layout_weight="@integer/dual_card_view_weight">
+                        android:text="@string/detail_card_overview_label"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Title" />
 
-                        <LinearLayout
-                            style="@style/Widget.CardContent"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="@string/detail_card_poster_label"
-                                android:textAppearance="@style/TextAppearance.AppCompat.Title" />
-
-                            <ImageView
-                                android:id="@+id/details_movie_poster"
-                                android:layout_width="wrap_content"
-                                android:layout_height="@dimen/detail_card_movie_poster_size"
-                                android:layout_gravity="center"
-                                android:contentDescription="@string/detail_card_movie_poster_content_desc"
-                                android:paddingTop="@dimen/detail_card_movie_poster_top_padding"
-                                android:scaleType="centerInside"
-                                android:src="@mipmap/ic_launcher" />
-
-                        </LinearLayout>
-
-                    </android.support.v7.widget.CardView>
-
-
-                    <android.support.v7.widget.CardView
+                    <TextView
+                        android:id="@+id/details_movie_overview"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="@dimen/card_margin"
-                        android:layout_marginLeft="@dimen/card_margin"
-                        android:layout_marginRight="@dimen/card_margin"
-                        android:layout_weight="@integer/dual_card_view_weight">
+                        android:minLines="@integer/movie_overview_min_lines"
+                        tools:text="Film Overview" />
 
-                        <LinearLayout
-                            style="@style/Widget.CardContent"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
+                </LinearLayout>
 
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="@string/detail_card_popularity_label"
-                                android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+            </android.support.v7.widget.CardView>
 
-                            <TextView
-                                android:id="@+id/popularity"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:fontFamily="sans-serif-thin"
-                                android:gravity="center"
-                                android:textColor="@color/primary"
-                                android:textSize="@dimen/detail_card_movie_popularity_fontsize"
-                                tools:text="12.34567" />
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/card_margin">
 
-                        </LinearLayout>
+                <LinearLayout
+                    style="@style/Widget.CardContent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-                    </android.support.v7.widget.CardView>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/detail_card_rating_label"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Title" />
 
+                    <TextView
+                        android:id="@+id/details_movie_rating"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        tools:text="5 Stars" />
 
                 </LinearLayout>
 
 
+            </android.support.v7.widget.CardView>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="@integer/dual_card_view_weight_total">
+
                 <android.support.v7.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/card_margin"
                     android:layout_marginLeft="@dimen/card_margin"
-                    android:layout_marginRight="@dimen/card_margin">
+                    android:layout_marginRight="@dimen/card_margin"
+                    android:layout_weight="@integer/dual_card_view_weight">
 
                     <LinearLayout
                         style="@style/Widget.CardContent"
@@ -174,23 +110,100 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@string/detail_card_release_date_label"
+                            android:text="@string/detail_card_poster_label"
                             android:textAppearance="@style/TextAppearance.AppCompat.Title" />
 
-                        <TextView
-                            android:id="@+id/details_movie_year"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            tools:text="05-08-2015" />
+                        <ImageView
+                            android:id="@+id/details_movie_poster"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/detail_card_movie_poster_size"
+                            android:layout_gravity="center"
+                            android:contentDescription="@string/detail_card_movie_poster_content_desc"
+                            android:paddingTop="@dimen/detail_card_movie_poster_top_padding"
+                            android:scaleType="centerInside"
+                            android:src="@mipmap/ic_launcher" />
 
                     </LinearLayout>
 
                 </android.support.v7.widget.CardView>
 
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/card_margin"
+                    android:layout_marginLeft="@dimen/card_margin"
+                    android:layout_marginRight="@dimen/card_margin"
+                    android:layout_weight="@integer/dual_card_view_weight">
+
+                    <LinearLayout
+                        style="@style/Widget.CardContent"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/detail_card_popularity_label"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+
+                        <TextView
+                            android:id="@+id/popularity"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:fontFamily="sans-serif-thin"
+                            android:gravity="center"
+                            android:textColor="@color/primary"
+                            android:textSize="@dimen/detail_card_movie_popularity_fontsize"
+                            tools:text="12.34567" />
+
+                    </LinearLayout>
+
+                </android.support.v7.widget.CardView>
+
+
             </LinearLayout>
 
-        </android.support.v4.widget.NestedScrollView>
 
-    </android.support.design.widget.CoordinatorLayout>
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/card_margin"
+                android:layout_marginLeft="@dimen/card_margin"
+                android:layout_marginRight="@dimen/card_margin">
 
-</LinearLayout>
+                <LinearLayout
+                    style="@style/Widget.CardContent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/detail_card_release_date_label"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+
+                    <TextView
+                        android:id="@+id/details_movie_year"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        tools:text="05-08-2015" />
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+
+        </LinearLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+
+    <!-- A RecyclerView with some commonly used attributes
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerview_trailers"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="vertical" /> -->
+
+</android.support.design.widget.CoordinatorLayout>
